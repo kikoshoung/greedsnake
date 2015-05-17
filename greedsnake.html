@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8;">
+        <title>Greed Snake</title>
+        <style type="text/css">
+            .stage{
+                float: left;
+                width: 362px;
+            }
+            .canvas{
+                border: 1px solid #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="stage">
+            <p>Score: <span id="score">0</span></p>
+            <canvas class="canvas" id="canvas" width="300" height="300">Your browser does not support canvas, please use Chrome or Firefox</canvas>
+            <p>PS: Use direction key to play.</p>
+            <p>
+                <button id="start">Start</button>
+                <button id="pause">Pause</button>
+                <button id="restart">Restart</button>
+            </p>
+        </div>
+    </body>
+    <script type="text/javascript" src="src/jquery.js"></script>
+    <script type="text/javascript" src="src/greedsnake.js"></script>
+    <script type="text/javascript">
+        var $score = $('#score'),
+            $start = $('#start'),
+            $pause = $('#pause'),
+            $restart = $('#restart');
+
+        var greedSnake = new Greedsnake({
+            canvas: document.getElementById('canvas'),
+            onscore: function(score){
+                $score.html(score);
+            }
+        });
+
+        $start.on('click', function(){
+            greedSnake.start();
+        });
+        $pause.on('click', function(){
+            greedSnake.togglePause();
+        });
+        $restart.on('click', function(){
+            greedSnake.restart();
+        });
+    </script>
+</html>
